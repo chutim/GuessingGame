@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Play Anything Else, Please...</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jura&display=swap">
+    
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/> -->
+   
+  </head>
+
+  <body>
+    <h1> Guess That Number! </h1>
+    
+    <div id="main-container">
+
+      <h2 id='status'> Let's Play! </h2>
+      
+      <ol>
+        <li id='guess1'>?</li>
+        <li id='guess2'>?</li>
+        <li id='guess3'>?</li>
+        <li id='guess4'>?</li>
+        <li id='guess5'>?</li>
+      </ol>
+      
+      <div id='guess-container'>
+        <span>
+          <button id='hint' title='The number of candidates will decrease with more guesses! Time your hint usage carefully.'>Hint</button>
+        </span>
+        <span>
+          <input id='guess' placeholder="1 - 100">
+        </span>
+        <span>
+          <button id='submit'>Guess!</button>
+        </span>
+      </div>
+
+      <div id='againwrapper'>
+        <button id='again'>Play Again?</button>
+      </div>
+
+    </div>
+
+    <script src='js/guessing-game.js'>
+
+  </body>
+
+</html>

@@ -1,0 +1,143 @@
+body {
+    margin-top: 40px;
+    font-family: 'Jura', sans-serif;
+    background-color: #032b25;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+    font-size: 60px;
+    background-color: #d68441;
+    margin: auto;
+    width: 50%;
+    border: 10px solid #ffffff;
+    border-radius: 90px 90px 0 0;
+    box-shadow: 0 0 50px 10px white;
+}
+
+#main-container {
+    margin: auto;
+    width: 50%;
+    border: 10px solid #ffffff;
+    border-top: 0px;
+    padding: 20px;
+    background-color: #fccca5;
+    border-radius: 0 0 450px 450px;
+    box-shadow: 0 0 50px 10px white;
+}
+
+
+ol {
+    font-size: 30px;
+    color: #ffffff;
+    text-shadow: 0 0 50px #06584b;
+    text-align: center;
+    padding: 0px;
+    margin: 15px;
+}
+
+li {
+    display: inline-block;  
+    border-radius: 100%;
+    background-color: #06584b;
+    box-shadow: 
+        0 0 40px white,
+        0 0 30px white,
+        0 0 20px white,
+        inset 0 0 20px white;
+    width: 80px;
+    height: 60px;
+    padding-top: 20px;
+    margin: 15px;
+}
+
+#status {
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    margin: 0px;
+}
+
+input, button {
+    font-family: inherit;
+}
+
+#guess {
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(97, 97, 97);
+    background-color: rgb(255, 255, 255);
+    width: 170px;
+    height: 100px;
+    margin: 10px;
+    border: 5px solid #e6995a;
+    border-radius: 60px;
+    text-align: center;
+    box-shadow: 
+        0 0 40px #e6995a,
+        0 0 30px #e6995a,
+        0 0 20px #e6995a;
+}
+
+#guess-container {
+    position: relative;
+    left: 20px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+#submit {
+    background-color: #06584b;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 2px solid white;
+}
+
+#submit:hover {
+    background-color: #82fd06;
+    color: #06584b;
+}
+
+#hint {
+    background-color: #ffffff;
+    color: #06584b;
+    font-size: 30px;
+    margin: 20px;
+    padding: 20px;
+    cursor: help;
+    border-radius: 50px;
+    border: 2px solid #06584b;
+}
+
+#hint:hover {
+    background-color: #06584b;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+#againwrapper {
+    text-align: center;
+}
+#again {
+    background-color: #e6995a;
+    color: #ffffff;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 50px;
+    border: 2px solid #ffffff;
+}
+#again:hover {
+    background-color: #06584b;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
