@@ -28,6 +28,7 @@ class Game {
         this.playersGuess = null;
         this.pastGuesses = [];
         this.winningNumber = generateWinningNumber();
+        this.hintRequests = 0;
     }
 
     difference() {
@@ -82,15 +83,19 @@ function newGame() {
     return new Game;
 }
 
+//--------------INITIATE NEW GAME UPON LOADING PAGE-----------------------
 let game = newGame();
 
+//--------------GRAB NECESSARY ELEMENTS AND SET TO CONSTANTS--------------
 const submitButton = document.getElementById('submit');
 const playAgainButton = document.getElementById('again');
 const hintButton = document.getElementById('hint');
 const statusHeader = document.getElementById('status');
 
-submitButton.addEventListener('click', () => {
+//--------------CALLBACK FUNCTIONS FOR BUTTONS-----------------------------
+function submitAction () {
     const guessInput = document.getElementById('guess');
+    //pass the input into the prototype function to evaluate, then pass returned string into statusHeader
     let outcome = game.playersGuessSubmission(Number(guessInput.value));
     
     if (outcome === 'GAME OVER') {
@@ -110,18 +115,17 @@ submitButton.addEventListener('click', () => {
     }
     //then clear the input box
     guessInput.value = '';
-})
+}
 
-hintButton.addEventListener('click', () => {
+function hintAction () {
     let hint = game.provideHint();
     statusHeader.innerHTML = 'Candidates: ' + hint.join(', ');
     //stop user from abusing the hint button to identify the commonly occurring number
     hintButton.disabled = true;
     hintButton.style.backgroundColor = 'gray';
+}
 
-})
-
-playAgainButton.addEventListener('click', () => {
+function playAgainAction () {
     //reset all circles to contain '?'
     for (let i = 1; i <= 5; i++){
         let currentCircle = document.getElementById(`guess${i}`);
@@ -134,4 +138,52 @@ playAgainButton.addEventListener('click', () => {
     hintButton.disabled = false;
     hintButton.style.backgroundColor = 'white';
     game = newGame();
+}
+
+//-------------RESTRICTING WHAT CAN BE ENTERED INTO THE INPUT FIELD-------------
+function onlyNums (input) {
+    //note that 'input' here is not just the latest keystroke, but also includes the entire current value inside the input box
+    //this regex says that the total input must end in a number. in other words, you can never type a letter
+    const numbersOnly = /[0-9]$/;
+    //if the total input ends in a number, then allow the total input to populate the field
+    if (numbersOnly.test(input)) {
+        document.getElementById('guess').value = input;
+    }
+    //otherwise, trim off the latest addition (that is not a number), and fill the field
+    else {
+        let trimmed = input.slice(0, -1);
+        document.getElementById('guess').value = trimmed;
+    }
+}
+
+
+//-------------TWO OPTIONS FOR SUBMITTING A GUESS------------------
+//pressing 'enter'
+window.addEventListener('keyup', key => {
+    if (key.key === 'Enter') submitAction();
 })
+//clicking the 'Guess!' button
+submitButton.addEventListener('click', submitAction);
+
+
+//-------------TWO OPTIONS FOR REQUESTING A HINT-------------------
+//pressing 'h'
+window.addEventListener('keyup', key => {
+    //once a hint has been requested, increment the hintRequests property value
+    //if a hint is requested again, hintAction() won't run
+    if (key.key === 'h' && !game.hintRequests) {
+        game.hintRequests++;
+        hintAction();
+    }
+})
+//clicking the 'Hint' button
+hintButton.addEventListener('click', hintAction)
+
+
+//-------------TWO OPTIONS FOR PLAYING AGAIN-----------------------
+//pressing 'p'
+window.addEventListener('keyup', key => {
+    if (key.key === 'p') playAgainAction();
+})
+//clicking the 'Play Again?' button
+playAgainButton.addEventListener('click', playAgainAction);
