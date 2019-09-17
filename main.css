@@ -64,6 +64,10 @@ input, button {
     font-family: inherit;
 }
 
+button:focus, input:focus {
+    outline: 0;
+}
+
 #guess {
     font-size: 40px;
     font-weight: 900;
