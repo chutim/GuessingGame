@@ -1,5 +1,5 @@
 body {
-    margin-top: 40px;
+    margin-top: 60px;
     font-family: 'Jura', sans-serif;
     background-color: #032b25;
 }
@@ -14,7 +14,7 @@ h1 {
     width: 50%;
     border: 10px solid #ffffff;
     border-radius: 90px 90px 0 0;
-    box-shadow: 0 0 50px 10px white;
+    box-shadow: 0 0 40px 10px white;
 }
 
 #main-container {
@@ -25,7 +25,7 @@ h1 {
     padding: 20px;
     background-color: #fccca5;
     border-radius: 0 0 450px 450px;
-    box-shadow: 0 0 50px 10px white;
+    box-shadow: 0 0 40px 10px white;
 }
 
 
@@ -72,18 +72,18 @@ input, button {
     width: 170px;
     height: 100px;
     margin: 10px;
-    border: 5px solid #e6995a;
+    border: 0px;
     border-radius: 60px;
     text-align: center;
     box-shadow: 
         0 0 40px #e6995a,
-        0 0 30px #e6995a,
-        0 0 20px #e6995a;
+        0 0 40px #e6995a,
+        0 0 40px #e6995a;
 }
 
 #guess-container {
     position: relative;
-    left: 20px;
+    left: -3px;
     margin: auto;
     width: 100%;
     text-align: center;
@@ -123,6 +123,8 @@ input, button {
     border: 2px solid #ffffff;
 }
 
+
+
 #againwrapper {
     text-align: center;
 }
@@ -141,3 +143,4 @@ input, button {
     color: #ffffff;
     border: 2px solid #ffffff;
 }
+
