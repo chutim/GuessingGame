@@ -1,12 +1,3 @@
-/*
-
-Write your guess-game code here! Don't forget to look at the test specs as a guide. You can run the specs
-by running "testem".
-
-In this file, you will also include the event listeners that are needed to interact with your HTML file when
-a user clicks a button or adds a guess to the input field.
-
-*/
 
 function generateWinningNumber() {
   return Math.ceil(Math.random() * 100);
@@ -51,16 +42,21 @@ class Game {
     //if not, push it into the array of guesses
     this.pastGuesses.push(this.playersGuess);
 
-    //winning condition. disable all playing buttons
-    if (this.playersGuess === this.winningNumber) {
+    function disableAll () {
       submitButton.disabled = true;
       hintButton.disabled = true;
+      guessField.disabled = true;
+      submitButton.classList.remove('submit-hover');
+      hintButton.classList.remove('hint-hover');
+    }
+    //winning condition. disable all playing buttons
+    if (this.playersGuess === this.winningNumber) {
+      disableAll();
       return "YOU GOT IT!";
     }
     //losing condition. disable all playing buttons
     if (this.pastGuesses.length === 5) {
-      submitButton.disabled = true;
-      hintButton.disabled = true;
+      disableAll();
       return "GAME OVER";
     }
     //otherwise, evaluate how close the guess is
@@ -98,6 +94,7 @@ const submitButton = document.getElementById("submit");
 const playAgainButton = document.getElementById("again");
 const hintButton = document.getElementById("hint");
 const statusHeader = document.getElementById("status");
+const guessField = document.getElementById('guess');
 
 //--------------CALLBACK FUNCTIONS FOR BUTTONS-----------------------------
 function submitAction() {
@@ -135,6 +132,7 @@ function hintAction() {
   //stop user from abusing the hint button to identify the commonly occurring number
   hintButton.disabled = true;
   hintButton.style.backgroundColor = "gray";
+  hintButton.classList.remove('hint-hover');
 }
 
 function playAgainAction() {
@@ -147,8 +145,12 @@ function playAgainAction() {
   statusHeader.innerHTML = "Let's Play!";
   statusHeader.style.color = "white";
   submitButton.disabled = false;
+  submitButton.classList.add('submit-hover');
   hintButton.disabled = false;
   hintButton.style.backgroundColor = "white";
+  hintButton.classList.add('hint-hover');
+  guessField.disabled = false;
+
   game = newGame();
 }
 
@@ -159,19 +161,19 @@ function onlyNums(input) {
   const numbersOnly = /[0-9]$/;
   //if the total input ends in a number, then allow the total input to populate the field
   if (numbersOnly.test(input)) {
-    document.getElementById("guess").value = input;
+    guessField.value = input;
   }
   //otherwise, trim off the latest addition (that is not a number), and fill the field
   else {
     let trimmed = input.slice(0, -1);
-    document.getElementById("guess").value = trimmed;
+    guessField.value = trimmed;
   }
 }
 
 //-------------TWO OPTIONS FOR SUBMITTING A GUESS------------------
 //pressing 'enter'
 window.addEventListener("keyup", key => {
-  if (key.key === "Enter") submitAction();
+  if (key.key === "Enter" && guessField.disabled === false) submitAction();
 });
 //clicking the 'Guess!' button
 submitButton.addEventListener("click", submitAction);
